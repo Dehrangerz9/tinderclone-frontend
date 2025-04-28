@@ -5,9 +5,6 @@ router.get('/', (req, res) => {
   res.render('login', { title: 'Página Inicial' });
 });
 
-router.get('/about', (req, res) => {
-  res.render('about', { title: 'Sobre Nós' });
-});
 
 
 router.get('/profile', (req, res) => {
