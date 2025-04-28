@@ -1,0 +1,47 @@
+[
+    {
+        "sender": "Ana Silva",
+        "fulaninImageLink": "/assets/userImages/anasilva.jpg",
+        "messages": [
+            { "message": "Oi, tudo bem?", "from": "fulanin" },
+            { "message": "Tudo ótimo! E você?", "from": "user" },
+            { "message": "Queria te ver hoje 😉", "from": "fulanin" }
+        ]
+    },
+    {
+        "sender": "Lucas Martins",
+        "fulaninImageLink": "/assets/userImages/lucasmartin.jpg",
+        "messages": [
+            { "message": "Hey, sumida!", "from": "fulanin" },
+            { "message": "Oi haha, tô aqui!", "from": "user" },
+            { "message": "Saudades de você", "from": "fulanin" }
+        ]
+    },
+    {
+        "sender": "Beatriz Souza",
+        "fulaninImageLink": "/assets/userImages/beatriz.jpg",
+        "messages": [
+            { "message": "Adorei seu perfil! 😍", "from": "fulanin" },
+            { "message": "Awn, obrigada!", "from": "user" },
+            { "message": "Me conta mais sobre você", "from": "fulanin" }
+        ]
+    },
+    {
+        "sender": "Gabriel Costa",
+        "fulaninImageLink": "/assets/userImages/gabrielcosta.jpg",
+        "messages": [
+            { "message": "Oi! Já nos vimos por aqui antes?", "from": "fulanin" },
+            { "message": "Acho que não 🤔", "from": "user" },
+            { "message": "Então é destino 😏", "from": "fulanin" }
+        ]
+    },
+    {
+        "sender": "Mariana Oliveira",
+        "fulaninImageLink": "/assets/userImages/mariana.jpg",
+        "messages": [
+            { "message": "Gosta de aventuras?", "from": "fulanin" },
+            { "message": "Amo! E você?", "from": "user" },
+            { "message": "Demais! Bora marcar algo?", "from": "fulanin" }
+        ]
+    }
+]

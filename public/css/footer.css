@@ -1,0 +1,47 @@
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #111; /* preto quase total */
+    border-top: 1px solid #600000; /* linha vermelha fina */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 0;
+    z-index: 1000;
+  }
+  
+  .footer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #aaa; /* cor inicial cinza */
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.3s;
+  }
+  
+  .footer-item i {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+  
+  /* Ícone de "Encontros" especial em vermelho */
+  .footer-item:first-child {
+    color: #ff3333;
+  }
+  
+  .footer-item:first-child i {
+    color: #ff3333;
+  }
+  
+  /* Hover para todos */
+  .footer-item:hover {
+    color: #fff;
+  }
+  
+  .footer-item:hover i {
+    color: #fff;
+  }
+  
