@@ -14,8 +14,12 @@ app.use(express.json());
 
 // Rotas
 app.get('/', (req, res) => {
-  res.render('swipper', { title: 'Página Inicial'});
+  res.render('login', { title: 'Página Inicial'});
 });
+
+app.post('/',(req,res) => {
+  res.render('swipper',{ title: 'Página Inicial'})
+})
 
 app.get('/login', (req, res) => {
   res.render('login', { title: 'Login' });
