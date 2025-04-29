@@ -2,32 +2,32 @@ const express = require('express');
 const path = require('path');
 const axios = require('axios');
 const app = express();
+const profileRoutes = require('./routes/profileController'); // <- Controller correto
 
 // Configurar view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Configurar arquivos estáticos (CSS, JS, imagens)
+// Configurar arquivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Rotas
+// Rotas principais
 app.get('/', (req, res) => {
   res.render('login', { title: 'Página Inicial'});
 });
 
-app.post('/',(req,res) => {
-  res.render('swipper',{ title: 'Página Inicial'})
-})
+app.post('/', (req, res) => {
+  res.render('swipper', { title: 'Página Inicial' });
+});
 
 app.get('/login', (req, res) => {
   res.render('login', { title: 'Login' });
 });
 
-app.get('/profile', (req, res) => {
-  res.render('profile', { title: 'PERFIL' });
-});
+// Corrigido: usar app.use para o profileRoutes
+app.use('/', profileRoutes);
 
 app.get('/chat', (req, res) => {
   res.render('chat.ejs', { title: 'CHAT' });
@@ -37,17 +37,16 @@ app.get('/mock.json', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/js/chatmock.json'));
 });
 
-// Rota para exibir o formulário de registro
+// Registro
 app.get('/register', (req, res) => {
-  res.render('register'); // Mostra o formulário
+  res.render('register'); // Exibe o formulário
 });
 
-// Rota que recebe o formulário
 app.post('/register', async (req, res) => {
   const { nome, email, senha, nascimento, genero, bio, idade, orientacao, genero_interesse, gostos } = req.body;
 
   try {
-    const response = await axios.post('localhost:8000/api/register', {
+    const response = await axios.post('http://localhost:8000/api/register', { // Corrigido http://
       nome,
       email,
       senha,
@@ -60,15 +59,10 @@ app.post('/register', async (req, res) => {
       gostos
     });
 
-    // Sucesso
     console.log(response.data);
-
-    // Pode fazer redirect ou renderizar uma página de sucesso
-    res.redirect('/login'); // ou qualquer página que você queira
+    res.redirect('/login');
   } catch (error) {
     console.error('Erro ao registrar usuário:', error.response ? error.response.data : error.message);
-
-    // Pode exibir a página de registro novamente com erro
     res.render('register', { error: 'Erro ao registrar. Tente novamente.' });
   }
 });

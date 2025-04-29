@@ -61,3 +61,52 @@ body {
     transform: scale(1.05);
   }
   
+  /* Foto de perfil */
+.profile-photo {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%; /* deixa redondo */
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: block;
+  margin: 20px auto; /* Centraliza */
+}
+
+/* Galeria de Fotos */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.gallery-photo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.gallery-photo:hover {
+  transform: scale(1.05);
+}
+
+/* Informações do Usuário */
+.profile-info {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-info h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.profile-info p {
+  font-size: 1.2rem;
+  color: #666;
+}

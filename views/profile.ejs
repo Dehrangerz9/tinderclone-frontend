@@ -1,22 +1,40 @@
 <%- include('partials/header') %>
 
 <section class="profile-page">
-  <h2>Bem-vindo à página de perfil</h2>
+  <div class="profile-info">
+    <img src="<%= user.profilePhoto %>" alt="Foto de Perfil" class="profile-photo" width="200" style="border-radius: 50%;">
+    
+    <h1><%= user.username %>, <%= user.age %> anos</h1>
+    <p><strong>Biografia:</strong> <%= user.bio %></p>
 
-  <section class="tasks">
-    <h3>Tasks para construir o perfil:</h3>
+    <h3>Hobbies:</h3>
     <ul>
-      <li>Adicionar foto de perfil</li>
-      <li>Exibir nome de usuário</li>
-      <li>Mostrar biografia</li>
-      <li>Listar postagens recentes</li>
-      <li>Botão para editar perfil</li>
-      <li>Galeria de fotos</li>
-      <li>Seção de interesses ou hobbies</li>
-      <li>Link para redes sociais externas</li>
-      <li>Status online/offline</li>
+      <% user.hobbies.forEach(hobby => { %>
+        <li><%= hobby %></li>
+      <% }); %>
     </ul>
-  </section>
+
+    <h3>Galeria de Fotos:</h3>
+    <div class="gallery" style="display: flex; gap: 10px;">
+      <% user.gallery.forEach(photo => { %>
+        <img src="<%= photo %>" alt="Galeria" class="gallery-photo" width="100">
+      <% }) %>
+    </div>
+
+    <h3>Redes Sociais:</h3>
+    <ul>
+      <% if (user.socialLinks.instagram) { %>
+        <li><a href="<%= user.socialLinks.instagram %>" target="_blank">Instagram</a></li>
+      <% } %>
+      <% if (user.socialLinks.linkedin) { %>
+        <li><a href="<%= user.socialLinks.linkedin %>" target="_blank">LinkedIn</a></li>
+      <% } %>
+    </ul>
+
+    <p><strong>Status:</strong> <%= user.isOnline ? 'Online agora' : 'Offline' %></p>
+
+    <a href="/profile/edit" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: blue; color: white; border-radius: 5px; text-decoration: none;">Editar Perfil</a>
+  </div>
 </section>
 
 <%- include('partials/footer') %>
