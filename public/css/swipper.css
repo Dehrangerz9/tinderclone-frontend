@@ -1,0 +1,145 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body centralizado */
+  body {
+    background-color: black;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .swipper-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+  }
+  
+  /* Container dos cards */
+  #card-container {
+    position: relative;
+    width: 300px;
+    height: 450px;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo dos cards */
+  .card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0);
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  /* Imagem do usuário */
+  .card img {
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+  }
+  
+  /* Nome e idade */
+  .card h2 {
+    margin: 10px 0 5px;
+    font-size: 1.5rem;
+    color: #ffffff;
+  }
+  
+  /* Bio */
+  .card p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #ffffff;
+    padding: 0 15px;
+  }
+
+  .card .age {
+    color: #cc0000;
+  }
+  
+  /* Tags de likes */
+  .tags {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    padding: 0 10px 10px;
+  }
+  
+  .tag {
+    background-color: #5e0000;
+    border: 1px solid #cc0000;
+    color: #cc0000;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+  
+  /* Botões */
+  .buttons {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .buttons button {
+    padding: 20px;
+    border: none;
+    border-radius: 100%;
+    font-size: 0.6rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  #dislike {
+    background-color: #0000004d;
+    color: white;
+    border: 1px solid white;
+  }
+  
+  #dislike:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  #like {
+    background-color: #cc00007e;
+    border: 1px solid #cc0000;
+    color: #cc0000;
+  }
+  
+  #like:hover {
+    background-color: #de1e1ed4;
+    color: white;
+  }
+  
+  /* Pequena animação ao dar like/dislike */
+  .card.swipe-like {
+    transform: translateX(400px) rotate(20deg);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .card.swipe-dislike {
+    transform: translateX(-400px) rotate(-20deg);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  

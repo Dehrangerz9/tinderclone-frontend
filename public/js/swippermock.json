@@ -1,0 +1,185 @@
+{
+    "likelist": [
+      {
+        "user": {
+          "name": "Emma Johnson",
+          "img": "https://randomuser.me/api/portraits/women/1.jpg",
+          "likes": ["Yoga", "Viagens"],
+          "age": 25,
+          "bio": "Entusiasta da vida. Sempre correndo atrás de pores do sol e sonhos."
+        }
+      },
+      {
+        "user": {
+          "name": "Olivia Smith",
+          "img": "https://randomuser.me/api/portraits/women/2.jpg",
+          "likes": ["Culinária", "Arte"],
+          "age": 28,
+          "bio": "Pintora de sentimentos e cozinheira de sonhos."
+        }
+      },
+      {
+        "user": {
+          "name": "Ava Brown",
+          "img": "https://randomuser.me/api/portraits/women/3.jpg",
+          "likes": ["Jogos", "Trilhas"],
+          "age": 24,
+          "bio": "Garota gamer que adora explorar novas trilhas."
+        }
+      },
+      {
+        "user": {
+          "name": "Isabella Taylor",
+          "img": "https://randomuser.me/api/portraits/women/4.jpg",
+          "likes": ["Fotografia", "Dança"],
+          "age": 27,
+          "bio": "Capturando o mundo, um passo de cada vez."
+        }
+      },
+      {
+        "user": {
+          "name": "Sophia Martinez",
+          "img": "https://randomuser.me/api/portraits/women/5.jpg",
+          "likes": ["Música", "Corrida"],
+          "age": 26,
+          "bio": "Apaixonada por música e corredora de maratonas."
+        }
+      },
+      {
+        "user": {
+          "name": "Amelia Garcia",
+          "img": "https://randomuser.me/api/portraits/women/6.jpg",
+          "likes": ["Moda", "Natação"],
+          "age": 29,
+          "bio": "Vestindo sonhos e mergulhando fundo."
+        }
+      },
+      {
+        "user": {
+          "name": "Mia Rodriguez",
+          "img": "https://randomuser.me/api/portraits/women/7.jpg",
+          "likes": ["Escrita", "Filmes"],
+          "age": 23,
+          "bio": "Contadora de histórias em páginas e telas."
+        }
+      },
+      {
+        "user": {
+          "name": "Harper Wilson",
+          "img": "https://randomuser.me/api/portraits/women/8.jpg",
+          "likes": ["Tecnologia", "Quadrinhos"],
+          "age": 25,
+          "bio": "Codificando de dia, lendo HQs à noite."
+        }
+      },
+      {
+        "user": {
+          "name": "Evelyn Anderson",
+          "img": "https://randomuser.me/api/portraits/women/9.jpg",
+          "likes": ["Astronomia", "Poesia"],
+          "age": 30,
+          "bio": "Observadora de estrelas com alma poética."
+        }
+      },
+      {
+        "user": {
+          "name": "Abigail Thomas",
+          "img": "https://randomuser.me/api/portraits/women/10.jpg",
+          "likes": ["Fotografia", "Viagens"],
+          "age": 26,
+          "bio": "Fotógrafa viajante com uma mala cheia de histórias."
+        }
+      },
+      {
+        "user": {
+          "name": "Lucas Pereira",
+          "img": "https://randomuser.me/api/portraits/men/1.jpg",
+          "likes": ["Futebol", "Cinema"],
+          "age": 27,
+          "bio": "Torcedor fiel e amante da sétima arte."
+        }
+      },
+      {
+        "user": {
+          "name": "Mateus Silva",
+          "img": "https://randomuser.me/api/portraits/men/2.jpg",
+          "likes": ["Leitura", "Caminhadas"],
+          "age": 28,
+          "bio": "Entre páginas e trilhas, encontro meu equilíbrio."
+        }
+      },
+      {
+        "user": {
+          "name": "Rafael Costa",
+          "img": "https://randomuser.me/api/portraits/men/3.jpg",
+          "likes": ["Cozinhar", "Tecnologia"],
+          "age": 30,
+          "bio": "Chef por paixão, geek por vocação."
+        }
+      },
+      {
+        "user": {
+          "name": "Gustavo Souza",
+          "img": "https://randomuser.me/api/portraits/men/4.jpg",
+          "likes": ["Música", "Skate"],
+          "age": 22,
+          "bio": "Vivendo no ritmo da batida e da ladeira."
+        }
+      },
+      {
+        "user": {
+          "name": "Thiago Fernandes",
+          "img": "https://randomuser.me/api/portraits/men/5.jpg",
+          "likes": ["Corrida", "Leitura"],
+          "age": 26,
+          "bio": "Corro para clarear a mente e mergulho nos livros para viajar."
+        }
+      },
+      {
+        "user": {
+          "name": "Bruno Lima",
+          "img": "https://randomuser.me/api/portraits/men/6.jpg",
+          "likes": ["Astronomia", "Fotografia"],
+          "age": 29,
+          "bio": "Registrando o céu e suas histórias."
+        }
+      },
+      {
+        "user": {
+          "name": "Henrique Almeida",
+          "img": "https://randomuser.me/api/portraits/men/7.jpg",
+          "likes": ["Jogos", "Comida"],
+          "age": 24,
+          "bio": "Gamer que nunca recusa uma boa refeição."
+        }
+      },
+      {
+        "user": {
+          "name": "Eduardo Ramos",
+          "img": "https://randomuser.me/api/portraits/men/8.jpg",
+          "likes": ["Moda", "Arte"],
+          "age": 25,
+          "bio": "Expressando estilo e sentimentos por meio da arte."
+        }
+      },
+      {
+        "user": {
+          "name": "André Cardoso",
+          "img": "https://randomuser.me/api/portraits/men/9.jpg",
+          "likes": ["Dança", "Filmes"],
+          "age": 23,
+          "bio": "Dançando como nos filmes que ama."
+        }
+      },
+      {
+        "user": {
+          "name": "Diego Rocha",
+          "img": "https://randomuser.me/api/portraits/men/10.jpg",
+          "likes": ["Viagens", "Natureza"],
+          "age": 31,
+          "bio": "Viajante apaixonado pela paz das paisagens naturais."
+        }
+      }
+    ]
+  }
+  
