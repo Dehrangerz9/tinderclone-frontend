@@ -1,12 +1,12 @@
 <%- include('partials/header') %>
 
 <style>
-  /* ESTILOS ESPECÍFICOS DO PERFIL*/
+    /* ESTILOS ESPECÍFICOS DO PERFIL - Altere os valores abaixo conforme preferir */
     .profile-page {
         background: #be0d0d; /* Cor de fundo da página */
         padding: 40px 20px;
     }
-
+    
 /* Biografia */
 .profile-info p {
     font-family: 'Arial', Helvetica, sans-serif;
@@ -18,14 +18,14 @@
 /* Listas (hobbies e redes sociais) */
 .profile-info ul {
     list-style-type: none;
-    padding: 0;
-    margin: 0.3em 0 1em 0;
+    padding-left: 0;
 }
 
 .profile-info ul li {
-  padding: 0;
-  margin: 0 0 0.4em 0.2em;
-  font-family: 'Arial', Helvetica, sans-serif;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 8px;
+    font-family: 'Arial', Helvetica, sans-serif;
 }
 
 /* Status */
@@ -105,10 +105,9 @@
     .profile-info ul li a {
         color: #0000FF; /* Cor dos links */
         text-decoration: none;
-        padding: 1%;
+        padding: 5px 10px;
         border-radius: 5px;
         transition: background 0.3s;
-        text-align: center;
     }
 
     .profile-info ul li a:hover {
