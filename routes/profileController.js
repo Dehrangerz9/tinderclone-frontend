@@ -10,8 +10,8 @@ router.get('/profile', (req, res) => {
     profilePhoto: '/assets/userImages/profile-photo.jpg', // Atualizado para pasta correta
     hobbies: ['Programação', 'Viagens', 'Música', 'Jogos'],
     socialLinks: {
-      instagram: 'https://instagram.com/', // Página inicial do Instagram
-      facebook: 'https://facebook.com/'    // Página inicial do Facebook (substitui o LinkedIn)
+      instagram: 'https://instagram.com/lucasp',
+      linkedin: 'https://linkedin.com/in/lucasp'
     },
     isOnline: true,
     gallery: [

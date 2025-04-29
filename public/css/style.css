@@ -1,9 +1,20 @@
+/* Garante que não haja scroll na janela do navegador */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
+  font-family: Arial, sans-serif;
+  overflow: hidden; /* Impede scroll global */
+}
+
+* {
+  box-sizing: border-box;
+}
+
   header {
     background-color: #333;
     color: #fff;
@@ -110,3 +121,25 @@ body {
   font-size: 1.2rem;
   color: #666;
 }
+
+/* Novos estilos para os títulos */
+h3 .tag {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.4em;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: linear-gradient(45deg, #be0d0d, #ff0844);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding: 5px 0;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+h3 .tag:hover {
+  transform: skewX(-5deg);
+  text-shadow: 0 2px 4px rgba(190, 13, 13, 0.2);
+}
+

@@ -1,39 +1,249 @@
 <%- include('partials/header') %>
 
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .profile-page {
+    background: #be0d0d;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .profile-page::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 3px solid #fff;
+    border-radius: 20px;
+    pointer-events: none;
+    box-shadow: 0 0 0 3px #be0d0d;
+  }
+
+  .profile-info {
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    border: 2px solid #be0d0d;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content-wrapper {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .scrollable-content {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 20px;
+  }
+
+  .profile-photo {
+    border: 3px solid #be0d0d;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    transition: transform 0.3s ease;
+  }
+
+  .profile-photo:hover {
+    transform: scale(1.05);
+  }
+
+  .profile-info h1, .profile-info h3 {
+    color: #2d3436;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .profile-info h1 {
+    margin-bottom: 15px;
+    font-size: 2.2em;
+    text-align: center;
+  }
+
+  .profile-info h3 {
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 8px;
+    margin: 20px 0 12px;
+  }
+
+  .profile-info p {
+    font-family: 'Arial', sans-serif;
+    color: #2d3436;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-height: 150px;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  .gallery-photo {
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+
+  .gallery-photo:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  .status {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1em;
+    padding: 10px 20px;
+    background-color: #f0f8ff;
+    border-radius: 25px;
+    display: inline-flex;
+    align-items: center;
+    margin: 15px 0;
+    border: 1px solid #d3e0ea;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    gap: 8px;
+  }
+
+  .tag {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    display: inline-block;
+    margin: 2px;
+    background: #f5f5f5;
+  }
+
+  .edit-button {
+    background: #be0d0d;
+    color: white;
+    font-weight: 500;
+    padding: 10px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    align-self: center;
+  }
+
+  .edit-button:hover {
+    background: #a10b0b;
+    transform: translateY(-2px);
+  }
+
+  @media (max-height: 700px) {
+    .profile-info {
+      padding: 15px;
+    }
+    .profile-photo {
+      width: 150px;
+      height: 150px;
+    }
+    .profile-info h1 {
+      font-size: 1.8em;
+    }
+    .gallery-photo {
+      width: 80px;
+      height: 80px;
+    }
+  }
+</style>
+
 <section class="profile-page">
   <div class="profile-info">
-    <img src="<%= user.profilePhoto %>" alt="Foto de Perfil" class="profile-photo" width="200" style="border-radius: 50%;">
-    
-    <h1><%= user.username %>, <%= user.age %> anos</h1>
-    <p><strong>Biografia:</strong> <%= user.bio %></p>
+    <div class="content-wrapper">
+      <div class="scrollable-content">
+        <img src="<%= user.profilePhoto %>" 
+             alt="Foto de Perfil" 
+             class="profile-photo" 
+             width="180">
 
-    <h3>Hobbies:</h3>
-    <ul>
-      <% user.hobbies.forEach(hobby => { %>
-        <li><%= hobby %></li>
-      <% }); %>
-    </ul>
+        <h1><%= user.username %>, <%= user.age %> anos</h1>
 
-    <h3>Galeria de Fotos:</h3>
-    <div class="gallery" style="display: flex; gap: 10px;">
-      <% user.gallery.forEach(photo => { %>
-        <img src="<%= photo %>" alt="Galeria" class="gallery-photo" width="100">
-      <% }) %>
+        <h3><span class="tag">Biografia</span></h3>
+        <p><%= user.bio %></p>
+
+        <h3><span class="tag">Hobbies</span></h3>
+        <ul>
+          <% user.hobbies.slice(0, 3).forEach(hobby => { %>
+            <li><%= hobby %></li>
+          <% }); %>
+        </ul>
+
+        <h3><span class="tag">Galeria</span></h3>
+        <div class="gallery">
+          <% user.gallery.slice(0, 4).forEach(photo => { %>
+            <img src="<%= photo %>" 
+                 alt="Foto da galeria" 
+                 class="gallery-photo">
+          <% }); %>
+        </div>
+
+        <h3><span class="tag">Redes Sociais</span></h3>
+        <div class="status">
+          <strong>Conecte-se:</strong>
+          <% if (user.socialLinks.instagram) { %>
+            <span class="tag">
+              <a href="<%= user.socialLinks.instagram %>" 
+                 target="_blank" 
+                 style="color: #be0d0d;">Instagram</a>
+            </span>
+          <% } %>
+          <% if (user.socialLinks.linkedin) { %>
+            <span class="tag">
+              <a href="<%= user.socialLinks.linkedin %>" 
+                 target="_blank" 
+                 style="color: #be0d0d;">LinkedIn</a>
+            </span>
+          <% } %>
+        </div>
+
+        <div class="status">
+          <strong>Status:</strong>
+          <% if (user.isOnline) { %>
+            <div class="online-indicator">
+              <span class="blink"></span>
+            </div>
+            <span class="online-text">Estou online!</span>
+          <% } else { %>
+            <span class="tag">Offline</span>
+          <% } %>
+        </div>
+
+        <a href="/profile/edit" class="edit-button">Editar Perfil</a>
+      </div>
     </div>
-
-    <h3>Redes Sociais:</h3>
-    <ul>
-      <% if (user.socialLinks.instagram) { %>
-        <li><a href="<%= user.socialLinks.instagram %>" target="_blank">Instagram</a></li>
-      <% } %>
-      <% if (user.socialLinks.linkedin) { %>
-        <li><a href="<%= user.socialLinks.linkedin %>" target="_blank">LinkedIn</a></li>
-      <% } %>
-    </ul>
-
-    <p><strong>Status:</strong> <%= user.isOnline ? 'Online agora' : 'Offline' %></p>
-
-    <a href="/profile/edit" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: blue; color: white; border-radius: 5px; text-decoration: none;">Editar Perfil</a>
   </div>
 </section>
 
