@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap');
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Winky Rough", sans-serif;
+
+body:has(.login-page ){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0f0f0f;
 }
-
-
 .container{
     width: 420px;
     background-color: #0f0f0f;

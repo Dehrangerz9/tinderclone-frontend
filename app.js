@@ -18,6 +18,10 @@ app.get('/', (req, res) => {
   res.render('login', { title: 'Página Inicial'});
 });
 
+app.get('/swipper', (req, res) => {
+  res.render('swipper', { title: 'Página Inicial' });
+});
+
 app.post('/', (req, res) => {
   res.render('swipper', { title: 'Página Inicial' });
 });

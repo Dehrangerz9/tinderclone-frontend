@@ -1,10 +1,9 @@
 .profile-page {
     background: black;
-    padding: 40px;
     width: 100%;
     display: flex;
     align-items: center;
-    flex: 95%;
+    flex: 80%;
   }
   
   .profile-info {
@@ -54,7 +53,7 @@
     grid-area: bio;
     font-family: 'Arial', Helvetica, sans-serif;
     color: #2d3436;
-    font-size: 1.1em;
+    font-size: 0.9rem;
     line-height: 1.6;
     margin: 0;
   }

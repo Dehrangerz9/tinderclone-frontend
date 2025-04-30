@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
 :root {
     /* Cores */
     --primary-color: #fe0000;
@@ -7,7 +9,7 @@
     --offline-color: #95a5a6;
     
     /* Tipografia */
-    --font-body: 'Poppins', Arial, sans-serif;
+    --font-body: 'Alata', Arial, sans-serif;
     --font-heading: 'Montserrat', sans-serif;
     
     /* Breakpoints */

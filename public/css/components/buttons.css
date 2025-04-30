@@ -1,22 +1,22 @@
 .btn {
-    padding: var(--space-sm) var(--space-md);
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.3s;
-    cursor: pointer;
-    
-    &--primary {
-      background-color: var(--primary-color);
-      color: white;
-      
-      &:hover {
-        background-color: #0056b3;
-      }
-    }
-    
-    &--profile {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-    }
-  }
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn--primary:hover {
+  background-color: #0056b3;
+}
+
+.btn--profile {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}

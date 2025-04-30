@@ -1,6 +1,7 @@
 .header {
     background-color: #333;
     padding: var(--space-md);
+    flex: 5%;
     
     &__nav {
       display: flex;
