@@ -1,0 +1,38 @@
+/* Container responsivo */
+.container {
+    width: 100%;
+    padding: 0 var(--space-md);
+    margin: 0 auto;
+    
+    @media (min-width: var(--breakpoint-md)) {
+      max-width: 720px;
+    }
+    
+    @media (min-width: var(--breakpoint-lg)) {
+      max-width: 1140px;
+    }
+  }
+  
+  /* Sistema de grid */
+  .grid {
+    display: grid;
+    gap: var(--space-md);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  /* Classes de texto */
+  .text-gradient {
+    background: linear-gradient(45deg, #be0d0d, #ff0844);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  /* Estados interativos */
+  .hover-scale {
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+  }

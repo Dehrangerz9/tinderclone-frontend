@@ -37,6 +37,10 @@ app.get('/mock.json', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/js/chatmock.json'));
 });
 
+app.get('/main.css', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/css/main.css'));
+});
+
 // Registro
 app.get('/register', (req, res) => {
   res.render('register'); // Exibe o formulário

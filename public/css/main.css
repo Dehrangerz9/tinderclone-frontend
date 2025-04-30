@@ -1,0 +1,11 @@
+@import 'core/variables.css';
+@import 'core/base.css';
+@import 'core/utilities.css';
+@import 'components/header.css';
+@import 'components/footer.css';
+@import 'components/buttons.css';
+@import 'pages/profile.css';
+@import 'chat.css';
+@import 'swipper.css';
+@import 'style.css';
+@import 'login_page.css';

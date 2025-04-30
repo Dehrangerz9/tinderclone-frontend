@@ -1,177 +1,52 @@
 <%- include('partials/header') %>
 
-<style>
-  /* ESTILOS ESPECÍFICOS DO PERFIL*/
-    .profile-page {
-        background: #be0d0d; /* Cor de fundo da página */
-        padding: 40px 20px;
-    }
-
-/* Biografia */
-.profile-info p {
-    font-family: 'Arial', Helvetica, sans-serif;
-    color: #2d3436;
-    font-size: 1.1em;
-    line-height: 1.6;
-}
-
-/* Listas (hobbies e redes sociais) */
-.profile-info ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0.3em 0 1em 0;
-}
-
-.profile-info ul li {
-  padding: 0;
-  margin: 0 0 0.4em 0.2em;
-  font-family: 'Arial', Helvetica, sans-serif;
-}
-
-/* Status */
-.status {
-    font-family: 'Arial', Helvetica, sans-serif;
-    font-size: 1.1em;
-    padding: 8px 15px;
-    background-color: #f8f9fa;
-    border-radius: 20px;
-    display: inline-block;
-    margin-top: 20px;
-    border: 1px solid #e0e0e0;
-}
-
-.status strong {
-    color: #2d3436;
-}
-
-.status span {
-    font-weight: bold;
-    padding-left: 5px;
-}
-    .profile-info {
-        background: white; /* Cor de fundo do container */
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 40px;
-        border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra suave */
-        position: relative;
-    }
-
-    .profile-photo {
-        border: 3px solid #e0e0e0; /* Cor da borda da foto */
-        margin-bottom: 25px;
-        transition: transform 0.3s ease; /* Efeito de hover */
-    }
-
-    .profile-photo:hover {
-        transform: scale(1.05); /* Zoom na foto ao passar o mouse */
-    }
-
-    .profile-info h1 {
-        color: #2d3436; /* Cor do nome */
-        font-family: 'Arial', Helvetica, sans-serif;
-        margin-bottom: 15px;
-        font-size: 2.2em;
-    }
-
-    .profile-info h3 {
-        color: #2d3436; /* Cor dos subtítulos */
-        border-bottom: 2px solid #f0f0f0;
-        padding-bottom: 8px;
-        margin: 25px 0 15px;
-        font-family: 'Arial', Helvetica, sans-serif;
-    }
-
-    .gallery {
-        display: flex;
-        flex-wrap: wrap; /* Garante responsividade */
-        gap: 15px;
-        padding: 10px 0;
-    }
-
-    .gallery-photo {
-        border-radius: 8px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .gallery-photo:hover {
-        opacity: 0.9;
-        transform: translateY(-2px);
-    }
-
-    /* Estilo para os links sociais */
-    .profile-info ul li a {
-        color: #0000FF; /* Cor dos links */
-        text-decoration: none;
-        padding: 1%;
-        border-radius: 5px;
-        transition: background 0.3s;
-        text-align: center;
-    }
-
-    .profile-info ul li a:hover {
-        background: #faf8f8;
-    }
-
-    /* Botão de edição */
-    .profile-info a[href="/profile/edit"] {
-    background: #be0d0d !important; /* Vermelho escuro */
-    color: white !important; /* Cor do texto */
-    font-weight: 500;
-    padding: 10px 20px; /* Espaçamento interno */
-    border-radius: 5px; /* Bordas arredondadas */
-    text-decoration: none; /* Remove sublinhado */
-    display: inline-block; /* Permite margin/padding */
-    transition: all 0.3s ease; /* Suaviza mudanças de estado */
-}
-
-    .profile-info a[href="/profile/edit"]:hover {
-        background: #2980b9 !important;
-        transform: translateY(-2px);
-    }
-</style>
-
 <section class="profile-page">
   <div class="profile-info">
-    <img src="<%= user.profilePhoto %>" alt="Foto de Perfil" class="profile-photo" width="200">
+    <img src="<%= user.profilePhoto %>" alt="Foto de Perfil" class="profile-photo" width="200" style="grid-area: photo;">
 
-    <h1><%= user.username %>, <%= user.age %> anos</h1>
-    <p><strong>Biografia:</strong> <%= user.bio %></p>
+    <div class="profile-aside" style="grid-area: name;">
+      <h1 ><%= user.username %>, <%= user.age %> anos</h1>
+      <p class="status">
+        <strong>Status:</strong>
+        <span style="color: <%= user.isOnline ? '#27ae60' : '#95a5a6' %>">
+          <%= user.isOnline ? 'Online agora' : 'Offline' %>
+        </span>
+      </p>
+      <div>
+        <h3>Redes Sociais:</h3>
+        <ul class="social-links">
+          <% if (user.socialLinks.instagram) { %>
+            <li><a href="<%= user.socialLinks.instagram %>" target="_blank">@<%= user.username%></a> <i class="fa-brands fa-instagram"></i></li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+    <div class="bio" style="grid-area: bio;"><h3>Biografia:</h3> <p><%- user.bio.replace(/\n/g, '<br>') %></p></div>
 
-    <h3>Hobbies:</h3>
-    <ul class="hobbies-list">
-      <% user.hobbies.forEach(hobby => { %>
-        <li><%= hobby %></li>
-      <% }); %>
-    </ul>
-
-    <h3>Galeria de Fotos:</h3>
-    <div class="gallery">
-      <% user.gallery.forEach(photo => { %>
-        <img src="<%= photo %>" alt="Galeria" class="gallery-photo" width="120">
-      <% }) %>
+    <div style="grid-area: hobbies;">
+      <h3>Hobbies:</h3>
+      <ul class="hobbies-list">
+        <% user.hobbies.forEach(hobby => { %>
+          <li><%= hobby %></li>
+        <% }); %>
+      </ul>
     </div>
 
-    <h3>Redes Sociais:</h3>
-    <ul class="social-links">
-      <% if (user.socialLinks.instagram) { %>
-        <li><a href="<%= user.socialLinks.instagram %>" target="_blank">Instagram</a></li>
-      <% } %>
-      <% if (user.socialLinks.linkedin) { %>
-        <li><a href="<%= user.socialLinks.linkedin %>" target="_blank">LinkedIn</a></li>
-      <% } %>
-    </ul>
+    <div style="grid-area: gallery;">
+      <h3>Galeria de Fotos:</h3>
+      <div class="gallery">
+        <% user.gallery.forEach(photo => { %>
+          <img src="<%= photo %>" alt="Galeria" class="gallery-photo" width="120">
+        <% }) %>
+      </div>
+    </div>
 
-    <p class="status"><strong>Status:</strong> 
-      <span style="color: <%= user.isOnline ? '#27ae60' : '#95a5a6' %>">
-        <%= user.isOnline ? 'Online agora' : 'Offline' %>
-      </span>
-    </p>
 
-    <a href="/profile/edit" class="edit-button">Editar Perfil</a>
+
+
+    <a href="/profile/edit" class="btn btn--primary">Editar Perfil</a>
   </div>
 </section>
+
 
 <%- include('partials/footer') %>

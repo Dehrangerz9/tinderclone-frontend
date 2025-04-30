@@ -71,7 +71,7 @@
   }
 
   .card .age {
-    color: #cc0000;
+    color: var(--primary-color);
   }
   
   /* Tags de likes */
@@ -85,9 +85,9 @@
   }
   
   .tag {
-    background-color: #5e0000;
-    border: 1px solid #cc0000;
-    color: #cc0000;
+    background-color: var(--primary-color-darker);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
     border-radius: 10px;
     padding: 5px 10px;
     font-size: 12px;
@@ -120,13 +120,13 @@
   }
   
   #like {
-    background-color: #cc00007e;
-    border: 1px solid #cc0000;
-    color: #cc0000;
+    background-color: var(--primary-color-darker);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
   }
   
   #like:hover {
-    background-color: #de1e1ed4;
+    background-color: var(--primary-color);
     color: white;
   }
   

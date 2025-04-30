@@ -1,0 +1,24 @@
+.header {
+    background-color: #333;
+    padding: var(--space-md);
+    
+    &__nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    &__link {
+      color: white;
+      margin: 0 var(--space-md);
+      transition: opacity 0.3s;
+      
+      &:hover {
+        opacity: 0.8;
+      }
+      
+      &--active {
+        border-bottom: 2px solid var(--primary-color);
+      }
+    }
+  }
