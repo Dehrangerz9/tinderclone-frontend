@@ -111,9 +111,12 @@
       <label for="orientacao">Orientação Sexual</label>
       <select id="orientacao" name="orientacao" required>
         <option value="">Selecione sua orientação</option>
-        <% ['Hetero','Gay','Lesbica','Bi','Pansexual','Outro'].forEach(o => { %>
-          <option></option>
-        <% }) %>
+        <option value="hetero">Hetéro</option>
+        <option value="gay">Gay</option>
+        <option value="lesbica">Lésbica</option>
+        <option value="bi">Bisexual</option>
+        <option value="pan">Pansexual</option>
+        <option value="outro">Outro</option>
       </select>
 
       <label for="bio">Bio</label>
