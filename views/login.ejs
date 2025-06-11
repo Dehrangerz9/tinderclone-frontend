@@ -35,14 +35,14 @@
 <body>
   <main>
 <section class="login-page container">
-  <form action="/" method="post">
+  <form id="loginForm">
     <h1>Login</h1>
     <div class="input-box">
-        <input placeholder="Usuário" type="email">
+        <input placeholder="Usuário" name="email" type="email">
         <i class="bx bxs-user"></i>
     </div>
     <div class="input-box">
-        <input placeholder="Senha" type="password">
+        <input placeholder="Senha" name="senha" type="password">
         <i class="bx bxs-lock-alt"></i>
     </div>
     <div class="remember-forgot">
@@ -54,6 +54,7 @@
     </div>
 
     <button type="submit" class="login">Login</button>
+    <p id="errorMessage" style="color:red;"></p>
 
     <div class="register-link">
         <p>Não tem uma conta? <a href="/register">Cadastre-se</a></p>
@@ -63,6 +64,38 @@
 
 </main>
 <script src="/js/script.js"></script>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', async function (event) {
+  event.preventDefault();
+
+  const email = document.querySelector('input[name="email"]').value;
+const senha = document.querySelector('input[name="senha"]').value;
+
+
+  try {
+    const response = await fetch('https://tinderclonefmu-1ufdzrjed-dehrangerz9s-projects.vercel.app/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, senha })
+    });
+
+    const data = await response.json();
+    console.log(data); // ✅ Aparece no console do navegador
+
+    if (response.ok && data.token) {
+localStorage.setItem('user-data', data["logado como: "])
+      localStorage.setItem('token', data.token); // ✅ Salva no navegador
+      window.location.href = '/swipper'; // Redireciona
+    } else {
+      document.getElementById('errorMessage').textContent = data.error || 'Erro ao logar.';
+    }
+  } catch (err) {
+    console.error('Erro:', err);
+    document.getElementById('errorMessage').textContent = 'Erro de rede.';
+  }
+});
+</script>
 </body>
 </html>
 
