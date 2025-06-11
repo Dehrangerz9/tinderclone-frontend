@@ -51,8 +51,7 @@ app.get('/register', (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
-  const { nome, email, senha, nascimento, genero, bio, idade, orientacao, genero_interesse, gostos } = req.body;
-
+  const { nome, email, senha, nascimento, genero, bio, idade, orientacao, gostos, genero_interesse} = req.body;
   try {
     const response = await axios.post('http://localhost:8000/api/register', { // Corrigido http://
       nome,
@@ -63,8 +62,8 @@ app.post('/register', async (req, res) => {
       bio,
       idade,
       orientacao,
-      genero_interesse,
-      gostos
+      gostos,
+      genero_interesse
     });
 
     console.log(response.data);

@@ -102,9 +102,9 @@
 
       <label for="genero">Qual sua identidade de gênero?</label>
       <select id="genero" name="genero" required>
-        <option value="Masculino">Homem</option>
-        <option value="Feminino">Mulher</option>
-        <option value="nb">Não binário</option>
+        <option value="masculino">Masculino</option>
+        <option value="feminino">Feminino</option>
+        <option value="não-binario">Não binário</option>
         <option value="outro">Outro</option>
       </select>
 
@@ -132,82 +132,99 @@
     </div>
   </div>
 
-  <script>
-    const form = document.getElementById('registerForm');
-    const errorDiv = document.getElementById('errorMessage');
-    const selectGenero = document.getElementById('genero');
-    const selectOrient = document.getElementById('orientacao');
-    const selectInteresse = document.getElementById('generoInteresse');
+<script>
+  const form = document.getElementById('registerForm');
+  const errorDiv = document.getElementById('errorMessage');
+  const selectGenero = document.getElementById('genero');
+  const selectOrient = document.getElementById('orientacao');
 
-    function calcularIdade(dataStr) {
-      const hoje = new Date();
-      const nasc = new Date(dataStr);
-      let i = hoje.getFullYear() - nasc.getFullYear();
-      const m = hoje.getMonth() - nasc.getMonth();
-      if (m<0 || (m===0 && hoje.getDate()<nasc.getDate())) i--;
-      return i;
+  function calcularIdade(dataStr) {
+    const hoje = new Date();
+    const nasc = new Date(dataStr);
+    let idade = hoje.getFullYear() - nasc.getFullYear();
+    const m = hoje.getMonth() - nasc.getMonth();
+    if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) idade--;
+    return idade;
+  }
+
+  function opcoesInteresse(orient, gen) {
+  orient = orient.toLowerCase();
+  gen = gen.toLowerCase();
+
+  const todos = ['masculino', 'feminino', 'não-binario'];
+
+  if (orient === 'hetero') {
+    if (gen === 'masculino') return ['feminino', 'não-binario'];
+    if (gen === 'feminino') return ['masculino', 'não-binario'];
+    if (gen === 'não-binario' || gen === 'outro') return ['todos'];
+  }
+
+  if (orient === 'gay') {
+    if (gen === 'masculino') return ['masculino'];
+    if (gen === 'feminino') return ['feminino'];
+     if (gen === 'não-binario' || gen === 'outro') return ['todos'];
+  }
+
+  if (orient === 'lesbica') {
+    if (gen === 'feminino') return ['feminino'];
+    if (gen === 'não-binario') return ['feminino']; // comum em contextos lésbicos inclusivos
+    return ['feminino'];
+  }
+
+  if (['bi', 'pan', 'pansexual', 'outro'].includes(orient)) {
+    return ['todos'];
+  }
+
+  return ['todos']; // Se orientação não reconhecida, assume interesse amplo
+}
+
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    errorDiv.textContent = '';
+
+    const nome = form.nome.value.trim();
+    const email = form.email.value.trim();
+    const senha = form.senha.value;
+    const csenha = form.confirmarSenha.value;
+    const nasc = form.nascimento.value;
+    const gen = form.genero.value;
+    const ori = form.orientacao.value;
+
+    if (![nome, email, senha, csenha, nasc, gen, ori].every(v => v)) {
+      errorDiv.textContent = 'Preencha todos os campos obrigatórios.';
+      return;
     }
 
-    function opcoesInteresse(orient, gen) {
-      orient = orient.toLowerCase();
-      gen = gen.toLowerCase();
-      if (orient==='hetero') return gen==='masculino'?['Feminino']:['Masculino'];
-      if (orient==='gay')     return ['Masculino'];
-      if (orient==='lesbica') return ['Feminino'];
-      if (['bi','pansexual','outro'].includes(orient)) return ['Masculino','Feminino'];
-      return ['Ambos'];
+    if (senha !== csenha) {
+      errorDiv.textContent = 'As senhas não coincidem.';
+      return;
     }
 
-    function atualizarInteresse() {
-      const o = selectOrient.value, g = selectGenero.value;
-      selectInteresse.innerHTML = '<option value="">Selecione seu interesse</option>';
-      if (o && g) {
-        opcoesInteresse(o,g).forEach(i=>{
-          const opt = document.createElement('option');
-          opt.value = i; opt.textContent = i;
-          selectInteresse.appendChild(opt);
-        });
-        selectInteresse.disabled = false;
-      } else {
-        selectInteresse.disabled = true;
-      }
-    }
+    // Remove campos ocultos antigos, se houver
+    form.querySelector('input[name="idade"]')?.remove();
+    form.querySelector('input[name="genero_interesse"]')?.remove();
 
-    selectOrient.addEventListener('change', atualizarInteresse);
-    selectGenero.addEventListener('change', atualizarInteresse);
+    // Cria e adiciona campo oculto para idade
+    const idadeField = document.createElement('input');
+    idadeField.type = 'hidden';
+    idadeField.name = 'idade';
+    idadeField.value = calcularIdade(nasc);
+    form.appendChild(idadeField);
 
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      errorDiv.textContent = '';
+    // Define genero_interesse (pega só o primeiro interesse possível)
+    const interesse = opcoesInteresse(ori, gen)[0] || '';
 
-      const nome  = form.nome.value.trim();
-      const email = form.email.value.trim();
-      const senha = form.senha.value;
-      const csenha= form.confirmarSenha.value;
-      const nasc  = form.nascimento.value;
-      const gen   = form.genero.value;
-      const ori   = form.orientacao.value;
-      const int   = form.genero_interesse.value;
+    const interesseField = document.createElement('input');
+    interesseField.type = 'hidden';
+    interesseField.name = 'genero_interesse';
+    interesseField.value = interesse;
+    form.appendChild(interesseField);
 
-      if (![nome,email,senha,csenha,nasc,gen,ori,int].every(v=>v)) {
-        errorDiv.textContent = 'Preencha todos os campos obrigatórios.';
-        return;
-      }
-      if (senha !== csenha) {
-        errorDiv.textContent = 'As senhas não coincidem.';
-        return;
-      }
+    form.submit();
+  });
+</script>
 
-      // calcula e preenche um campo hidden (se necessário)
-      form.idade && form.idade.remove();
-      const idadeField = document.createElement('input');
-      idadeField.type = 'hidden';
-      idadeField.name = 'idade';
-      idadeField.value = calcularIdade(nasc);
-      form.appendChild(idadeField);
 
-      form.submit(); // envia para o Express, que usa axios no server-side
-    });
-  </script>
 </body>
 </html>
