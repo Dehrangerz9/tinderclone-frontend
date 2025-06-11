@@ -1,87 +1,13 @@
-/* Garante que não haja scroll na janela do navegador */
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  overflow: hidden; /* Impede scroll global */
-}
-
-* {
-  box-sizing: border-box;
-}
-
-  header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
-  }
-  
-  nav a {
-    color: #fff;
-    margin-right: 1rem;
-    text-decoration: none;
-  }
-  
-  .tasks h3 {
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-  }
-  
-  .tasks ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .tasks li {
-    background-color: #ffffff;
-    margin-bottom: 10px;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    transition: background-color 0.3s, transform 0.3s;
-    cursor: pointer;
-  }
-  
-  /* Hover nas tasks */
-  .tasks li:hover {
-    background-color: #e9ecef;
-    transform: translateX(5px);
-    border-color: #007bff;
-  }
-
-
-  .btn-go-profile {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 24px;
-    background-color: #007bff;
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: background-color 0.3s, transform 0.2s;
-  }
-  
-  .btn-go-profile:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-  }
-  
-  /* Foto de perfil */
+/* Foto de perfil */
 .profile-photo {
   width: 180px;
   height: 180px;
   object-fit: cover;
-  border-radius: 50%; /* deixa redondo */
+  border-radius: 50%;
   border: 3px solid #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   display: block;
-  margin: 20px auto; /* Centraliza */
+  margin: 20px auto;
 }
 
 /* Galeria de Fotos */
@@ -90,7 +16,6 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
-  margin-top: 30px;
 }
 
 .gallery-photo {
@@ -106,23 +31,12 @@ body {
   transform: scale(1.05);
 }
 
-/* Informações do Usuário */
-.profile-info {
-  text-align: center;
-  margin-top: 20px;
-}
-
 .profile-info h1 {
   font-size: 2rem;
   margin-bottom: 10px;
 }
 
-.profile-info p {
-  font-size: 1.2rem;
-  color: #666;
-}
-
-/* Novos estilos para os títulos */
+/* Estilos para os títulos com tag */
 h3 .tag {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
@@ -142,4 +56,3 @@ h3 .tag:hover {
   transform: skewX(-5deg);
   text-shadow: 0 2px 4px rgba(190, 13, 13, 0.2);
 }
-

@@ -1,0 +1,101 @@
+<%- include('partials/header') %>
+
+<section class="profile-page">
+  <div class="profile-info">
+    <div class="profile-photo-container">
+      <img
+        id="profileImageDisplay"
+        src="http://localhost:8000/<%= user['foto_perfil'] %>"
+        alt="Foto de Perfil"
+        class="profile-photo"
+      >
+       <button id="openModalBtn" class="btn btn--primary">📝</button>
+    </div>
+    <h1>
+  @ <%= user.nome %>
+  <% if (user.orientacao === 'hetero') { %>
+    <img src="assets/icons/straight-ally.png" alt="Hetero Flag" style="height: 20px;">
+  <% } else if (user.orientacao === 'gay') { %>
+    <img src="assets/icons/gay-flag.png" alt="Gay Flag" style="height: 20px;">
+  <% } else if (user.orientacao === 'lesbica') { %>
+    <img src="assets/icons/lesbian-flag.png" alt="Lésbica Flag" style="height: 20px;">
+  <% } else if (user.orientacao === 'bi') { %>
+    <img src="assets/icons/bi-flag.png" alt="Bi Flag" style="height: 20px;">
+  <% } else if (user.orientacao === 'pan') { %>
+    <img src="assets/icons/pan-flag.png" alt="Pan Flag" style="height: 20px;">
+  <% } else if (user.orientacao === 'outro') { %>
+    <!-- Deixa em branco -->
+  <% } %>
+</h1>
+
+    <h2><%= user.idade %> Anos</h2>
+
+    <div class="bio">
+      <h1>Biografia</h1>
+      <p><%- user.bio %></p>
+    </div>
+
+   
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="imageModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModalBtn">&times;</span>
+    <h2>Enviar nova imagem de perfil</h2>
+    <form id="imgForm" enctype="multipart/form-data">
+      <input type="file" id="newProfileImage" name="image" accept="image/*" required>
+      <button type="submit" class="btn btn--primary">Enviar</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const openModalBtn = document.getElementById('openModalBtn');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const modal = document.getElementById('imageModal');
+  const imgForm = document.getElementById('imgForm');
+  const profileImageDisplay = document.getElementById('profileImageDisplay');
+
+  openModalBtn.addEventListener('click', () => modal.classList.remove('hidden'));
+  closeModalBtn.addEventListener('click', () => modal.classList.add('hidden'));
+
+  imgForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const userId = JSON.parse(localStorage.getItem('user-data')).id;
+    const fileInput = document.getElementById('newProfileImage');
+    const image = fileInput.files[0];
+
+    if (!userId || !image) {
+      alert('Usuário ou imagem inválida.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('id', userId);
+    formData.append('profile_picture', image);
+
+    try {
+      const response = await fetch('http://localhost:8000/api/img-change/', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json(); // espera que backend retorne { newImageUrl: '...' }
+        profileImageDisplay.src = `http://localhost:8000/${data.newImageUrl}?t=${Date.now()}`; // força atualização
+        modal.classList.add('hidden');
+        fileInput.value = '';
+      } else {
+        alert('Erro ao enviar imagem.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Erro de rede.');
+    }
+  });
+</script>
+
+<%- include('partials/footer') %>

@@ -1,8 +1,11 @@
 const express = require('express');
+const cookieParse = require('cookie-parser')
+
 const path = require('path');
 const axios = require('axios');
 const app = express();
 const profileRoutes = require('./routes/profileController'); // <- Controller correto
+const cookieParser = require('cookie-parser');
 
 // Configurar view engine
 app.set('view engine', 'ejs');
@@ -12,10 +15,15 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 // Rotas principais
 app.get('/', (req, res) => {
   res.render('login', { title: 'Página Inicial'});
+});
+
+app.get('/swipper', (req, res) => {
+  res.render('swipper', { title: 'Página Inicial' });
 });
 
 app.post('/', (req, res) => {
@@ -37,14 +45,17 @@ app.get('/mock.json', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/js/chatmock.json'));
 });
 
+app.get('/main.css', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/css/main.css'));
+});
+
 // Registro
 app.get('/register', (req, res) => {
   res.render('register'); // Exibe o formulário
 });
 
 app.post('/register', async (req, res) => {
-  const { nome, email, senha, nascimento, genero, bio, idade, orientacao, genero_interesse, gostos } = req.body;
-
+  const { nome, email, senha, nascimento, genero, bio, idade, orientacao, gostos, genero_interesse} = req.body;
   try {
     const response = await axios.post('http://localhost:8000/api/register', { // Corrigido http://
       nome,
@@ -55,8 +66,8 @@ app.post('/register', async (req, res) => {
       bio,
       idade,
       orientacao,
-      genero_interesse,
-      gostos
+      gostos,
+      genero_interesse
     });
 
     console.log(response.data);
