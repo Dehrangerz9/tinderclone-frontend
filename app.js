@@ -1,8 +1,11 @@
 const express = require('express');
+const cookieParse = require('cookie-parser')
+
 const path = require('path');
 const axios = require('axios');
 const app = express();
 const profileRoutes = require('./routes/profileController'); // <- Controller correto
+const cookieParser = require('cookie-parser');
 
 // Configurar view engine
 app.set('view engine', 'ejs');
@@ -12,6 +15,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 // Rotas principais
 app.get('/', (req, res) => {

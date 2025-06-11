@@ -2,51 +2,81 @@
 
 <section class="profile-page">
   <div class="profile-info">
-    <img src="<%= user.profilePhoto %>" alt="Foto de Perfil" class="profile-photo" width="200" style="grid-area: photo;">
+    <img 
+      id="profileImageDisplay"
+      src="http://localhost:8000/<%= user['foto_perfil'] %>" 
+      alt="Foto de Perfil" 
+      class="profile-photo"
+    >
 
-    <div class="profile-aside" style="grid-area: name;">
-      <h1 ><%= user.username %>, <%= user.age %> anos</h1>
-      <p class="status">
-        <strong>Status:</strong>
-        <span style="color: <%= user.isOnline ? '#27ae60' : '#95a5a6' %>">
-          <%= user.isOnline ? 'Online agora' : 'Offline' %>
-        </span>
-      </p>
-      <div>
-        <h3>Redes Sociais:</h3>
-        <ul class="social-links">
-          <% if (user.socialLinks.instagram) { %>
-            <li><a href="<%= user.socialLinks.instagram %>" target="_blank">@<%= user.username%></a> <i class="fa-brands fa-instagram"></i></li>
-          <% } %>
-        </ul>
-      </div>
-    </div>
-    <div class="bio" style="grid-area: bio;"><h3>Biografia:</h3> <p><%- user.bio.replace(/\n/g, '<br>') %></p></div>
+    <h1><%= user.nome %></h1>
 
-    <div style="grid-area: hobbies;">
-      <h3>Hobbies:</h3>
-      <ul class="hobbies-list">
-        <% user.hobbies.forEach(hobby => { %>
-          <li><%= hobby %></li>
-        <% }); %>
-      </ul>
+    <div class="bio">
+      <h3>Biografia:</h3>
+      <p><%- user.bio %></p>
     </div>
 
-    <div style="grid-area: gallery;">
-      <h3>Galeria de Fotos:</h3>
-      <div class="gallery">
-        <% user.gallery.forEach(photo => { %>
-          <img src="<%= photo %>" alt="Galeria" class="gallery-photo" width="120">
-        <% }) %>
-      </div>
-    </div>
-
-
-
-
-    <a href="/profile/edit" class="btn btn--primary">Editar Perfil</a>
+    <button id="openModalBtn" class="btn btn--primary">Alterar Imagem</button>
   </div>
 </section>
 
+<!-- Modal -->
+<div id="imageModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModalBtn">&times;</span>
+    <h2>Enviar nova imagem de perfil</h2>
+    <form id="imgForm" enctype="multipart/form-data">
+      <input type="file" id="newProfileImage" name="image" accept="image/*" required>
+      <button type="submit" class="btn btn--primary">Enviar</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const openModalBtn = document.getElementById('openModalBtn');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const modal = document.getElementById('imageModal');
+  const imgForm = document.getElementById('imgForm');
+  const profileImageDisplay = document.getElementById('profileImageDisplay');
+
+  openModalBtn.addEventListener('click', () => modal.classList.remove('hidden'));
+  closeModalBtn.addEventListener('click', () => modal.classList.add('hidden'));
+
+  imgForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const userId = JSON.parse(localStorage.getItem('user-data')).id;
+    const fileInput = document.getElementById('newProfileImage');
+    const image = fileInput.files[0];
+
+    if (!userId || !image) {
+      alert('Usuário ou imagem inválida.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('id', userId);
+    formData.append('profile_picture', image);
+
+    try {
+      const response = await fetch('http://localhost:8000/api/img-change/', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json(); // espera que backend retorne { newImageUrl: '...' }
+        profileImageDisplay.src = `http://localhost:8000/${data.newImageUrl}?t=${Date.now()}`; // força atualização
+        modal.classList.add('hidden');
+        fileInput.value = '';
+      } else {
+        alert('Erro ao enviar imagem.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Erro de rede.');
+    }
+  });
+</script>
 
 <%- include('partials/footer') %>

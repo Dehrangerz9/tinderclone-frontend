@@ -84,8 +84,9 @@ const senha = document.querySelector('input[name="senha"]').value;
     console.log(data); // ✅ Aparece no console do navegador
 
     if (response.ok && data.token) {
-localStorage.setItem('user-data', data["logado como: "])
+      localStorage.setItem('user-data', JSON.stringify(data["logado como: "]));
       localStorage.setItem('token', data.token); // ✅ Salva no navegador
+      document.cookie = `user-data=${localStorage.getItem("user-data")}; path=/`;
       window.location.href = '/swipper'; // Redireciona
     } else {
       document.getElementById('errorMessage').textContent = data.error || 'Erro ao logar.';

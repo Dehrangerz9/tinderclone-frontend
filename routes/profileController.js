@@ -3,6 +3,7 @@ const router = express.Router();
 
 // Página de perfil
 router.get('/profile', (req, res) => {
+  const userData = JSON.parse(req.cookies["user-data"]);
   const user = {
     username: 'Lucas Martins',
     age: 24,
@@ -22,8 +23,9 @@ router.get('/profile', (req, res) => {
   };
 
   res.render('profile', { 
-    user,
-    title: "Perfil - " + user.username // Passa também um título dinâmico
+    user:userData,
+    
+    title: "Perfil - " + userData.nome
   });
 });
 
