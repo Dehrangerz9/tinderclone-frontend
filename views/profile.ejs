@@ -2,21 +2,40 @@
 
 <section class="profile-page">
   <div class="profile-info">
-    <img 
-      id="profileImageDisplay"
-      src="http://localhost:8000/<%= user['foto_perfil'] %>" 
-      alt="Foto de Perfil" 
-      class="profile-photo"
-    >
+    <div class="profile-photo-container">
+      <img
+        id="profileImageDisplay"
+        src="http://localhost:8000/<%= user['foto_perfil'] %>"
+        alt="Foto de Perfil"
+        class="profile-photo"
+      >
+       <button id="openModalBtn" class="btn btn--primary">📝</button>
+    </div>
+    <h1>
+  @ <%= user.nome %>
+  <% if (user.orientacao === 'hetero') { %>
+    <img src="/caminho/para/hetero.png" alt="Hetero Flag" style="height: 20px;">
+  <% } else if (user.orientacao === 'gay') { %>
+    <img src="/caminho/para/gay.png" alt="Gay Flag" style="height: 20px;">
+  <% } else if (user.orientacao === 'lesbica') { %>
+    <img src="/caminho/para/lesbica.png" alt="Lésbica Flag" style="height: 20px;">
+  <% } else if (user.orientacao === 'bi') { %>
+    <img src="/caminho/para/bi.png" alt="Bi Flag" style="height: 20px;">
+  <% } else if (user.orientacao === 'pan') { %>
+    <img src="assets/icons/pan-flag.png" alt="Pan Flag" style="height: 20px;">
+  <% } else if (user.orientacao === 'outro') { %>
+    <!-- Deixa em branco -->
+  <% } %>
+</h1>
 
-    <h1><%= user.nome %></h1>
+    <h2><%= user.idade %> Anos</h2>
 
     <div class="bio">
-      <h3>Biografia:</h3>
+      <h1>Biografia</h1>
       <p><%- user.bio %></p>
     </div>
 
-    <button id="openModalBtn" class="btn btn--primary">Alterar Imagem</button>
+   
   </div>
 </section>
 

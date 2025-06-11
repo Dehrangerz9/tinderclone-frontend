@@ -190,8 +190,9 @@
     const nasc = form.nascimento.value;
     const gen = form.genero.value;
     const ori = form.orientacao.value;
+    const bio = form.bio.value;
 
-    if (![nome, email, senha, csenha, nasc, gen, ori].every(v => v)) {
+    if (![nome, email, senha, csenha, nasc, gen, ori,bio].every(v => v)) {
       errorDiv.textContent = 'Preencha todos os campos obrigatórios.';
       return;
     }
